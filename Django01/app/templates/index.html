@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Dictionary Values</h1>
+
+    <h1>{{users}}</h1>
+
+    <table border="1" cellpadding="15" cellspacing="5">
+        <tr>
+            <th>S.No</th>
+            <th>name</th>
+            <th>age</th>
+            <th>Vote Eligible</th>
+        </tr>
+        {% for user in users %}
+        <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{user.name}}</td>
+            <td>{{user.age}}</td>
+            <td>
+                {% if user.age >= 18 %}
+                    Eligible for vote
+                {% else %}
+                    Not eligible for vote
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+
+</html>
