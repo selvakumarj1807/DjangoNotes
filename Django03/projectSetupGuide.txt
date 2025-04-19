@@ -1,0 +1,41 @@
+# Project Setup Guide for Django Project with Multiple Apps
+
+## Step 1: Verify Python and Pip Installation
+Make sure Python and pip are installed correctly.
+
+Check Python version:
+    python --version
+
+Check pip version:
+    pip --version
+
+## Step 2: Create and Activate a Virtual Environment
+Create a virtual environment named `myworld`:
+    python -m venv myworld
+
+Activate the virtual environment (Windows):
+    .\myworld\Scripts\activate
+
+## Step 3: Install Django
+Install Django in the virtual environment:
+    pip install django
+
+## Step 4: Start Django Project
+Create a Django project named `MultipleAppProject` in the current directory:
+    django-admin startproject MultipleAppProject .
+
+## Step 5: Create Django Apps
+Create a Django app for user management:
+    python manage.py startapp user
+
+Create a Django app for user enquiry:
+    python manage.py startapp userEnquiry
+
+Create a Django app for listing users:
+    python manage.py startapp userList
+
+## Step 6: Run the Development Server
+Start the development server to ensure everything is working:
+    python manage.py runserver
+
+Now you can visit http://127.0.0.1:8000/ in your browser.
