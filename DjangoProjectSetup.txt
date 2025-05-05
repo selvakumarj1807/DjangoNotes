@@ -26,6 +26,11 @@ Step-by-Step Instructions:
    On macOS/Linux:
        source myworld/bin/activate
 
+
+If have a CMD Error :
+
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+
 4. Install Django:
    -----------------
    pip install django
