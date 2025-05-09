@@ -1,0 +1,98 @@
+Django Project Setup Guide
+==========================
+
+1. Check Python and Pip Version
+-------------------------------
+python --version
+pip --version
+
+2. Create a Virtual Environment
+-------------------------------
+python -m venv myworld
+
+3. Activate Virtual Environment
+-------------------------------
+# For Windows:
+.\myworld\Scripts\activate
+
+# For macOS/Linux:
+source myworld/bin/activate
+
+4. Install Django
+-----------------
+pip install django
+
+5. Create Django Project
+------------------------
+# The dot (.) indicates the current directory
+django-admin startproject projectName .
+
+6. Create a Django App
+----------------------
+python manage.py startapp app
+
+7. Make Initial Migrations
+--------------------------
+python manage.py makemigrations
+python manage.py migrate
+
+8. Define Models
+----------------
+# In app/models.py, define your tables and columns using Django models.
+# Example:
+from django.db import models
+
+class StudentEnquiry(models.Model):
+    name = models.CharField(max_length=255)
+    dob = models.CharField(max_length=255)  
+    mobile = models.CharField(max_length=10)  
+    email = models.EmailField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:  
+        db_table = "studentTable"
+
+    def __str__(self):
+        return f"{self.name} - {self.mobile}"
+
+
+9. Run Migrations After Model Changes
+-------------------------------------
+python manage.py makemigrations
+python manage.py migrate
+
+10. Run Development Server
+--------------------------
+python manage.py runserver
+
+11. Create a Superuser for Admin Panel
+--------------------------------------
+python manage.py createsuperuser
+
+# Sample:
+Username: admin
+Email address: admin@mail.com
+Password: admin@123
+
+# If password is weak, you can bypass with:
+Bypass password validation and create user anyway? [y/N]: y
+
+12. Access Django Admin
+-----------------------
+# Open in browser:
+http://127.0.0.1:8000/admin
+
+13. Register Models in admin.py
+-------------------------------
+# In app/admin.py:
+from django.contrib import admin
+from .models import StudentEnquiry
+
+admin.site.register(StudentEnquiry)
+
+# Refresh /admin to see the model in admin panel
+
+14. Insert, Update, Delete Records via Admin
+--------------------------------------------
+Use the Django admin interface to manage database records visually.
+
