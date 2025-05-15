@@ -1,0 +1,64 @@
+# Project Setup Instructions for student_api (Django + DRF)
+
+1. Check Python and pip versions
+--------------------------------
+python --version
+pip --version
+
+2. Create Virtual Environment
+-----------------------------
+python -m venv env
+
+3. Activate Virtual Environment
+-------------------------------
+# On Windows
+.\env\Scripts\activate
+
+# On macOS/Linux
+source env/bin/activate
+
+4. Install Required Packages
+----------------------------
+pip install django djangorestframework
+
+5. Create Django Project
+------------------------
+django-admin startproject student_api .
+
+6. Create Django App
+--------------------
+python manage.py startapp students
+
+7. Register Apps in settings.py
+-------------------------------
+# Inside student_api/settings.py, add to INSTALLED_APPS:
+
+'rest_framework',
+'students',
+
+8. Create Student Model
+-----------------------
+# Inside students/models.py:
+
+from django.db import models
+
+class Student(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    course = models.CharField(max_length=100)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+9. Apply Migrations
+-------------------
+python manage.py makemigrations
+python manage.py migrate
+
+10. Run Development Server
+--------------------------
+python manage.py runserver
+
+# Server will run at:
+# http://127.0.0.1:8000/
