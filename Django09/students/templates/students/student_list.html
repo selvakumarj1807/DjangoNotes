@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Students</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>Student List</h1>
+    <a href="{% url 'student-add' %}">Add New Student</a>
+    <table border="1" id="studentTable">
+        <thead>
+            <tr><th>ID</th><th>Name</th><th>Email</th><th>Course</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        axios.get('/api/students/')
+            .then(res => {
+                const students = res.data;
+                const tbody = document.querySelector("#studentTable tbody");
+                students.forEach(s => {
+                    const row = `<tr>
+                        <td>${s.id}</td>
+                        <td>${s.name}</td>
+                        <td>${s.email}</td>
+                        <td>${s.course}</td>
+                        <td>
+                            <a href="/edit/${s.id}/">Edit</a> |
+                            <a href="/detail/${s.id}/">View</a>
+                        </td>
+                    </tr>`;
+                    tbody.innerHTML += row;
+                });
+            });
+    </script>
+</body>
+</html>
